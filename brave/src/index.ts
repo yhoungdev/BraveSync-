@@ -1,11 +1,13 @@
 import Fastify from "fastify";
+import { handleBackup } from "./controller/handle_backup";
 
 const fastify = Fastify({
-    logger: true
+    // logger: true
 })
 
  fastify.get('/' , (req, reply) => {
-    reply.send("Hello its working !!! ")
+    handleBackup()
+    return reply.send("Hello its working !!! ")
  })
 
 
