@@ -1,0 +1,6 @@
+{
+    "manifest_version": 3,
+    "name": "Sidebar Sentry",
+    "version": "1.0.0",
+    "action": { "default_popup": "index.html" }
+  }

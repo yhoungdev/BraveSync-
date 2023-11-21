@@ -1,14 +1,20 @@
-import puppeteer from 'puppeteer';
+import * as puppeteer from 'puppeteer';
 
-const handleBackup = async  () => {
-  const browser = await puppeteer.launch({headless: 'new' , args: ['--disable-web-security']}); 
+async function openBravePrefsInternals() {
+  const browser = await puppeteer.launch({ headless: false }); // Launch Puppeteer in non-headless mode
   const page = await browser.newPage();
-  const redirectPath = `file://${__dirname}/../views/redirect.html`;
-  await page.goto(redirectPath)
-  await page.screenshot({ path: 'brave_bookmarks.png' });
 
+  try {
+    await page.goto('brave://prefs-internals', { waitUntil: 'domcontentloaded' });
+    await page.screenshot({path:'test.png'})
   
-  await browser.close()
-};
 
-export { handleBackup };
+
+  } catch (error) {
+    console.error('Error:', error);
+  } finally {
+    await browser.close();
+  }
+}
+
+export { openBravePrefsInternals}

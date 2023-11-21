@@ -1,12 +1,12 @@
 import Fastify from "fastify";
-import { handleBackup } from "./controller/handle_backup";
+import { openBravePrefsInternals } from "./controller/handle_backup";
 
 const fastify = Fastify({
     // logger: true
 })
 
  fastify.get('/' , (req, reply) => {
-    handleBackup()
+    openBravePrefsInternals()
     return reply.send("Hello its working !!! ")
  })
 
